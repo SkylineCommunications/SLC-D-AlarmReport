@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DMSScript options="272" xmlns="http://www.skyline.be/automation">
-	<Name>SLC-GQIDS-AlarmReport</Name>
+	<Name>SLC-D-AlarmReport</Name>
 	<Description></Description>
 	<Type>Automation</Type>
-	<Author>RGE</Author>
+	<Author>Sebastiaan</Author>
 	<CheckSets>FALSE</CheckSets>
 	<Folder></Folder>
 
@@ -18,9 +18,8 @@
 
 	<Script>
 		<Exe id="1" type="csharp">
-			<Value><![CDATA[[Project:SLC-GQIDS-AlarmReport]]]></Value>
-			<Param type="preCompile">true</Param>
-			<Param type="libraryName">SLC-GQIDS-AlarmReport</Param>
+			<Value><![CDATA[[Project:SLC-D-AlarmReport]]]></Value>
+			<!--<Param type="debug">true</Param>-->
 			<Message></Message>
 		</Exe>
 	</Script>
