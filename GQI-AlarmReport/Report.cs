@@ -4,6 +4,7 @@ using System;
 internal sealed class Report
 {
     private const int DEFAULT_VIEW_FILTER = -1;
+    private const int DEFAULT_MAX_AMOUNT = 5;
 
     private static readonly Lazy<Report> _lazyInstance = new Lazy<Report>(() => new Report());
 
@@ -26,6 +27,12 @@ internal sealed class Report
             IsRequired = true,
             DefaultValue = TimeSpans.DAY,
         };
+
+        MaxAmountArgument = new GQIIntArgument("Max amount")
+        {
+            IsRequired = false,
+            DefaultValue = DEFAULT_MAX_AMOUNT,
+        };
     }
 
     public static Report Instance => _lazyInstance.Value;
@@ -33,6 +40,8 @@ internal sealed class Report
     public GQIArgument<int> ViewFilterArgument { get; }
 
     public GQIArgument<string> TimeSpanArgument { get; }
+
+    public GQIArgument<int> MaxAmountArgument { get; }
 
     public int GetViewFilter(OnArgumentsProcessedInputArgs argumentValues)
     {
@@ -44,5 +53,12 @@ internal sealed class Report
     public string GetTimeSpan(OnArgumentsProcessedInputArgs argumentValues)
     {
         return argumentValues.GetArgumentValue(TimeSpanArgument);
+    }
+
+    public int GetMaxAmount(OnArgumentsProcessedInputArgs argumentValues)
+    {
+        if (argumentValues.TryGetArgumentValue(MaxAmountArgument, out int maxAmount))
+            return maxAmount;
+        return DEFAULT_MAX_AMOUNT;
     }
 }

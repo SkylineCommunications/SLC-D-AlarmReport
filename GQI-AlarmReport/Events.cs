@@ -17,6 +17,7 @@ public sealed class Events : IGQIDataSource, IGQIOnInit, IGQIInputArguments
 
     private int _viewFilter;
     private string _timeSpan;
+    private int _maxAmount;
 
     public Events()
     {
@@ -40,6 +41,7 @@ public sealed class Events : IGQIDataSource, IGQIOnInit, IGQIInputArguments
         {
             Report.Instance.ViewFilterArgument,
             Report.Instance.TimeSpanArgument,
+            Report.Instance.MaxAmountArgument,
         };
     }
 
@@ -47,6 +49,7 @@ public sealed class Events : IGQIDataSource, IGQIOnInit, IGQIInputArguments
     {
         _viewFilter = Report.Instance.GetViewFilter(args);
         _timeSpan = Report.Instance.GetTimeSpan(args);
+        _maxAmount = Report.Instance.GetMaxAmount(args);
         return default;
     }
 
@@ -107,7 +110,7 @@ public sealed class Events : IGQIDataSource, IGQIOnInit, IGQIInputArguments
         {
             Timespan = timeSpan,
             SortMethod = ReportTopSortType.Total,
-            MaxAmount = 5,
+            MaxAmount = _maxAmount,
             Options = ReportOptionFlags.IncludeDerivedElements | ReportOptionFlags.IncludeServices,
             Filter = viewFilter,
         };
